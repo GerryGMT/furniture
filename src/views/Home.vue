@@ -216,7 +216,7 @@
               src="https://www.epichomeideas.com/wp-content/uploads/2016/10/sectional-sofa.jpg"
               height="400px"
             >
-              
+            </v-img>
           </v-card>
         </v-flex>
 
