@@ -59,24 +59,41 @@
       <v-layout row wrap>
         <v-flex xs12 md3>
           <v-card class="mx-auto" width="256" tile>
-            <v-navigation-drawer permanent>
-              <v-divider></v-divider>
-              <v-list nav dense>
-                <v-list-item-group v-model="selectedCollection" color="primary">
-                  <v-list-item v-for="(collection, c) in collections" :key="c">
-                    <v-list-item-icon>
-                      <v-icon v-text="collection.icon"></v-icon>
-                    </v-list-item-icon>
+            <v-list>
+              <v-list-group
+                v-if="mobile"
+                :value="false"
+                prepend-icon="mdi-expand-all-outline"
+                no-action
+              >
+                <template v-slot:activator>
+                  <v-list-item-content>
+                    <v-list-item-title>All</v-list-item-title>
+                  </v-list-item-content>
+                </template>
 
-                    <v-list-item-content>
-                      <v-list-item-title
-                        v-text="collection.text"
-                      ></v-list-item-title>
-                    </v-list-item-content>
-                  </v-list-item>
-                </v-list-item-group>
-              </v-list>
-            </v-navigation-drawer>
+                <v-list-item v-for="([title], i) in cruds" :key="i" link>
+                  <v-list-item-title v-text="title"></v-list-item-title>
+                </v-list-item>
+              </v-list-group>
+
+              <v-list-group
+                v-else
+                :value="true"
+                prepend-icon="mdi-expand-all-outline"
+                no-action
+              >
+                <template v-slot:activator>
+                  <v-list-item-content>
+                    <v-list-item-title>All</v-list-item-title>
+                  </v-list-item-content>
+                </template>
+
+                <v-list-item v-for="([title], i) in cruds" :key="i" link>
+                  <v-list-item-title v-text="title"></v-list-item-title>
+                </v-list-item>
+              </v-list-group>
+            </v-list>
           </v-card>
         </v-flex>
 
@@ -333,6 +350,7 @@ export default {
   },
   data() {
     return {
+      value: false,
       SearchClosed: true,
       carousel: 0,
       selectedCollection: 0,
@@ -343,25 +361,24 @@ export default {
         { title: "About" },
         { title: "Contact Us" },
       ],
-      collections: [
-        { text: "All" },
-        { text: "New Arrivals" },
-        { text: "Hot Sale" },
-        { text: "Furniture" },
-        { text: "Amrature" },
-        { text: "Table" },
-        { text: "Chair" },
-        { text: "Sofa" },
-        { text: "Mirrors" },
-        { text: "Stools" },
-        { text: "Benches" },
-      ],
-      items: [
-        { title: "Dashboard", icon: "mdi-view-dashboard" },
-        { title: "Photos", icon: "mdi-image" },
-        { title: "About", icon: "mdi-help-box" },
+      cruds: [
+        ["New Arrivals"],
+        ["Hot Sale"],
+        ["Furniture"],
+        ["Amrature"],
+        ["Table"],
+        ["Chair"],
+        ["Sofa"],
+        ["Mirrors"],
+        ["Stools"],
+        ["Benches"],
       ],
     };
+  },
+  computed: {
+    mobile() {
+      return this.$vuetify.breakpoint.smAndDown;
+    },
   },
 };
 </script>
