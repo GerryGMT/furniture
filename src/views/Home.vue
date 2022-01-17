@@ -13,24 +13,17 @@
       <v-app-bar>
         <v-toolbar-title class="font-weight-bold">Furniking</v-toolbar-title>
         <v-spacer></v-spacer>
-
-        <v-col cols="12" sm="3" class="mt-7">
-          <v-text-field
-            label="Search here"
-            placeholder="Search furniking"
-            color="yellow"
-            solo-inverted
-            clearable
-            loading
-          ></v-text-field>
-        </v-col>
-
-        <v-btn>
-          <v-icon>mdi-magnify</v-icon>
-        </v-btn>
-
-        <v-spacer></v-spacer>
-
+        <v-text-field
+          color="green"
+          @focus="SearchClosed = false"
+          @blur="SearchClosed = true"
+          placeholder="Search"
+          prepend-inner-icon="mdi-magnify"
+          class="expanding-search mt-6"
+          :class="{ closed: SearchClosed }"
+          filled
+          dense
+        ></v-text-field>
         <v-btn icon>
           <v-icon>mdi-shopping-outline</v-icon>
         </v-btn>
@@ -340,6 +333,7 @@ export default {
   },
   data() {
     return {
+      SearchClosed: true,
       carousel: 0,
       selectedCollection: 0,
       menus: [
@@ -378,5 +372,14 @@ export default {
 }
 span {
   color: #fff;
+}
+.expanding-search {
+  transition: 0.4s;
+}
+.closed {
+  max-width: 45px;
+}
+.v-input__slot {
+  background: transparent !important;
 }
 </style>
