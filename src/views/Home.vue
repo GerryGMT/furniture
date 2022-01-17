@@ -1,17 +1,10 @@
 <template>
   <v-app id="lux">
     <div>
-      <v-system-bar height="50" color="green" class="px-4 text-caption">
-        <span>Welcome To Our Online Shop</span>
-        <v-spacer></v-spacer>
-        <span>English(USD)</span>
-        <v-icon>mdi-chevron-down</v-icon>
-        <v-divider vertical></v-divider>
-        <v-btn text color="#fff">Login or Sign Up</v-btn>
-      </v-system-bar>
-
       <v-app-bar>
-        <v-toolbar-title class="font-weight-bold">Furniking</v-toolbar-title>
+        <v-toolbar-title class="font-weight-bold"
+          >Genesis Furniture</v-toolbar-title
+        >
         <v-spacer></v-spacer>
         <v-text-field
           color="green"
@@ -27,17 +20,10 @@
         <v-btn icon>
           <v-icon>mdi-shopping-outline</v-icon>
         </v-btn>
-        <v-btn icon>
-          <v-icon>mdi-bell-outline</v-icon>
-        </v-btn>
-        <v-btn icon>
-          <v-icon>mdi-account-outline</v-icon>
-        </v-btn>
       </v-app-bar>
 
       <v-toolbar flat>
         <div align="center">
-          <v-spacer></v-spacer>
           <v-list class="d-flex align-center">
             <v-btn color="green" dark
               ><v-icon>mdi-filter-variant</v-icon>All collections</v-btn
@@ -45,7 +31,7 @@
             <v-spacer></v-spacer>
             <v-list-item link v-for="(menu, m) in menus" :key="m" to="route">
               <v-list-item-content>
-                <v-list-item-title class="text-h6 px-2">
+                <v-list-item-title class="text-h7">
                   {{ menu.title }}
                 </v-list-item-title>
               </v-list-item-content>
@@ -354,13 +340,7 @@ export default {
       SearchClosed: true,
       carousel: 0,
       selectedCollection: 0,
-      menus: [
-        { title: "Home", route: "home" },
-        { title: "Shop" },
-        { title: "Blog" },
-        { title: "About" },
-        { title: "Contact Us" },
-      ],
+      menus: [{ title: "Contact Us" }],
       cruds: [
         ["New Arrivals"],
         ["Hot Sale"],
@@ -384,9 +364,6 @@ export default {
 </script>
 
 <style scoped>
-.carousel {
-  color: #000;
-}
 span {
   color: #fff;
 }
